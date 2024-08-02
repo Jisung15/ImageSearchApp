@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">ImageSearchApp</string>
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="search_button">이미지 검색</string>
+    <string name="image_choice_button">내 보관함</string>
 </resources>

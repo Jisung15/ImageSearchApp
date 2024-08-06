@@ -2,18 +2,20 @@ package com.example.imagesearchapp
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import android.text.TextUtils.replace
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.view.menu.MenuBuilder
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.imagesearchapp.databinding.ActivityMainBinding
+import com.example.imagesearchapp.fragment.ChoiceFragment
+import com.example.imagesearchapp.recyclerView.RecyclerViewAdapter
 import com.google.android.material.tabs.TabLayoutMediator
 
 class MainActivity : AppCompatActivity() {
 
     private val binding by lazy { ActivityMainBinding.inflate(layoutInflater) }
+    private lateinit var searchFragmentAdapter: RecyclerViewAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,10 +28,22 @@ class MainActivity : AppCompatActivity() {
         }
 
         setViewPager()
+
+//        val listData = searchFragmentAdapter.getLikedItems()
+//
+//        val newList = ChoiceFragment()
+//        supportFragmentManager.beginTransaction()
+//            .replace(R.id.view_pager, newList)
+//            .setReorderingAllowed(true)
+//            .addToBackStack(null)
+//            .commit()
+//        newList.setList(listData)
+
     }
 
+
     private fun setViewPager() {
-        val items = loadItems()
+        val items = tabText()
 
         with(binding) {
             viewPager.adapter = ViewPagerAdapter(this@MainActivity)
@@ -45,9 +59,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     @SuppressLint("RestrictedApi")
-    private fun loadItems(): List<String> {
+    private fun tabText(): List<String> {
         val tabText = MenuBuilder(this)
-        menuInflater.inflate(R.menu.viewpager_tab_text, tabText)
+        menuInflater.inflate(R.menu.tab_layout_text, tabText)
 
         val showTab = mutableListOf<String>()
 

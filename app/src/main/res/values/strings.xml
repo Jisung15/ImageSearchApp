@@ -1,8 +1,14 @@
 <resources>
     <string name="app_name">ImageSearchApp</string>
 
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="hello_blank_fragment">보관함 Fragment 구현 예정</string>
 
     <string name="search_button">이미지 검색</string>
     <string name="image_choice_button">내 보관함</string>
+
+    <string name="sample_item_text">Daum카페</string>
+    <string name="sample_item_date">2024-01-21 22:50:57</string>
+
+    <string name="search_bar_hint">검색어를 입력하세요.</string>
+    <string name="search_button_text">검색</string>
 </resources>

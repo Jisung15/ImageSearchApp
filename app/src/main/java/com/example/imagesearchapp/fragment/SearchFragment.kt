@@ -9,20 +9,16 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
-import com.example.imagesearchapp.ImageDocument
-import com.example.imagesearchapp.RetrofitClient
-import com.example.imagesearchapp.SubmitDataItem
-import com.example.imagesearchapp.VideoDocument
-import com.example.imagesearchapp.recyclerView.RecyclerViewAdapter
+import com.example.imagesearchapp.retrofit.RetrofitClient
+import com.example.imagesearchapp.recyclerView.SearchRecyclerViewAdapter
 import com.example.imagesearchapp.databinding.FragmentSearchBinding
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
 class SearchFragment : Fragment() {
     private var _binding: FragmentSearchBinding? = null
     private val binding get() = _binding!!
     private var searchText: String = ""
-    private lateinit var adapter: RecyclerViewAdapter
+    private lateinit var adapter: SearchRecyclerViewAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -43,11 +39,14 @@ class SearchFragment : Fragment() {
         binding.searchButton.setOnClickListener {
             if (binding.searchTextInput.text.toString().isNotEmpty()) {
                 searchText = binding.searchTextInput.text.toString()
+
                 dataSaved(searchText)
                 searchResult(searchText)
+
                 binding.recyclerView.setBackgroundColor(Color.parseColor("#00000000"))
-                Toast.makeText(requireContext(), "${searchText}를 검색하셨습니다.", Toast.LENGTH_SHORT)
-                    .show()
+
+                Toast.makeText(requireContext(), "${searchText}를 검색하셨습니다.", Toast.LENGTH_SHORT).show()
+
             } else {
                 Toast.makeText(requireContext(), "검색어를 입력하세요.", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
@@ -72,32 +71,27 @@ class SearchFragment : Fragment() {
 
     private fun searchResult(query: String) {
         lifecycleScope.launch {
-            try {
-                val imageResponseData = RetrofitClient.dustNetWork.getImage(
-                    apiKey = "KakaoAK d9e31c60db2fd236337a605b8b0128bf",
-                    query = query,
-                    sort = "recency",
-                    page = 1,
-                    size = 80
-                )
+            val imageResponseData = RetrofitClient.dustNetWork.getImage(
+                apiKey = "KakaoAK d9e31c60db2fd236337a605b8b0128bf",
+                query = query,
+                sort = "recency",
+                page = 1,
+                size = 80
+            )
 
-                val videoResponseData = RetrofitClient.dustNetWork.getVideo(
-                    apiKey = "KakaoAK d9e31c60db2fd236337a605b8b0128bf",
-                    query = query,
-                    sort = "recency",
-                    page = 1,
-                    size = 30
-                )
+            val videoResponseData = RetrofitClient.dustNetWork.getVideo(
+                apiKey = "KakaoAK d9e31c60db2fd236337a605b8b0128bf",
+                query = query,
+                sort = "recency",
+                page = 1,
+                size = 30
+            )
 
-                val imageDocumentData = imageResponseData.documents!!
-                val videoDocumentData = videoResponseData.documents!!
+            val imageDocumentData = imageResponseData.documents!!
+            val videoDocumentData = videoResponseData.documents!!
 
-                adapter = RecyclerViewAdapter(videoDocumentData)
-                recyclerViewAdapter()
-            } catch (e: Exception) {
-                Toast.makeText(requireContext(), "에러!", Toast.LENGTH_SHORT).show()
-                e.printStackTrace()
-            }
+            adapter = SearchRecyclerViewAdapter(videoDocumentData)
+            recyclerViewAdapter()
         }
     }
 

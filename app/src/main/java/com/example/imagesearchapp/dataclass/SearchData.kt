@@ -1,8 +1,6 @@
-package com.example.imagesearchapp
+package com.example.imagesearchapp.dataclass
 
-import com.google.gson.annotations.SerializedName
-
-sealed class SubmitDataItem {
+sealed class SubmitDataItem (
 //    val thumbnail: String?
 //    val datetime: String?
 //    val title: String?
@@ -25,4 +23,4 @@ sealed class SubmitDataItem {
 //        @SerializedName("title")
 //        override val title: String?,
 //    )
-}
+)

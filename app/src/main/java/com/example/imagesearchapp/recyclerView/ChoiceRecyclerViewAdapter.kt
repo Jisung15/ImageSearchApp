@@ -1,24 +1,23 @@
-package com.example.imagesearchapp
+package com.example.imagesearchapp.recyclerView
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.imagesearchapp.dataclass.ImageDocument
 import com.example.imagesearchapp.databinding.GridItemRecyclerViewBinding
 
-class RecyclerViewAdapter2(private val items: List<ImageDocument?>) :
-    RecyclerView.Adapter<RecyclerViewAdapter2.Holder>() {
+class ChoiceRecyclerViewAdapter(private val items: List<ImageDocument?>) :
+    RecyclerView.Adapter<ChoiceRecyclerViewAdapter.Holder>() {
 
-    inner class Holder(private val binding: GridItemRecyclerViewBinding) :
-        RecyclerView.ViewHolder(binding.root) {
+    inner class Holder(private val binding: GridItemRecyclerViewBinding) : RecyclerView.ViewHolder(binding.root) {
         val image = binding.searchImageValue
         val imageText = binding.searchTextValue
         val imageDate = binding.searchDateValue
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
-        val binding =
-            GridItemRecyclerViewBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding = GridItemRecyclerViewBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return Holder(binding)
     }
 

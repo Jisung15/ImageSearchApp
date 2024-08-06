@@ -6,14 +6,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
-import com.example.imagesearchapp.ImageDocument
-import com.example.imagesearchapp.RecyclerViewAdapter2
+import com.example.imagesearchapp.dataclass.ImageDocument
+import com.example.imagesearchapp.recyclerView.ChoiceRecyclerViewAdapter
 import com.example.imagesearchapp.databinding.FragmentChoiceBinding
 
 class ChoiceFragment : Fragment() {
     private var _binding: FragmentChoiceBinding? = null
     private val binding get() = _binding!!
-    private lateinit var adapter: RecyclerViewAdapter2
+    private lateinit var adapter: ChoiceRecyclerViewAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -35,10 +35,10 @@ class ChoiceFragment : Fragment() {
         _binding = null
     }
 
-    fun setList(data: List<ImageDocument?>) {
-        adapter = RecyclerViewAdapter2(data)
-        binding.recyclerView.adapter = adapter
-    }
+//    fun setList(data: List<ImageDocument?>) {
+//        adapter = ChoiceRecyclerViewAdapter(data)
+//        binding.recyclerView.adapter = adapter
+//    }
 
 //    fun newInstance(param1: List<Document?>) {
 //        ChoiceFragment().apply {

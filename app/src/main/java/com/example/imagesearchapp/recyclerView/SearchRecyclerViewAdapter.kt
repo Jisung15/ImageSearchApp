@@ -4,17 +4,17 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.imagesearchapp.VideoDocument
+import com.example.imagesearchapp.dataclass.VideoDocument
 import com.example.imagesearchapp.databinding.GridItemRecyclerViewBinding
 import java.time.OffsetDateTime
 import java.time.format.DateTimeFormatter
 
-class RecyclerViewAdapter(
+class SearchRecyclerViewAdapter(
 //    private val imageItems: List<ImageDocument?>,
     private val videoItems: List<VideoDocument?>
 //    private val submitDataItem: List<SubmitDataItem>,
 
-) : RecyclerView.Adapter<RecyclerViewAdapter.Holder>() {
+) : RecyclerView.Adapter<SearchRecyclerViewAdapter.Holder>() {
 
     inner class Holder(private val binding: GridItemRecyclerViewBinding) :
         RecyclerView.ViewHolder(binding.root) {
@@ -25,8 +25,7 @@ class RecyclerViewAdapter(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
-        val binding =
-            GridItemRecyclerViewBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding = GridItemRecyclerViewBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return Holder(binding)
     }
 
@@ -39,7 +38,6 @@ class RecyclerViewAdapter(
         val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")
         val dateTime = OffsetDateTime.parse(item?.datetime)
         val dataTimeFormat = dateTime?.format(formatter)
-
 
         holder.date.text = dataTimeFormat
 
@@ -54,6 +52,3 @@ class RecyclerViewAdapter(
         return position.toLong()
     }
 }
-
-
-// async를 기억하자

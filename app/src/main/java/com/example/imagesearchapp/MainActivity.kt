@@ -8,14 +8,13 @@ import androidx.appcompat.view.menu.MenuBuilder
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.imagesearchapp.databinding.ActivityMainBinding
-import com.example.imagesearchapp.fragment.ChoiceFragment
-import com.example.imagesearchapp.recyclerView.RecyclerViewAdapter
+import com.example.imagesearchapp.recyclerView.SearchRecyclerViewAdapter
 import com.google.android.material.tabs.TabLayoutMediator
 
 class MainActivity : AppCompatActivity() {
 
     private val binding by lazy { ActivityMainBinding.inflate(layoutInflater) }
-    private lateinit var searchFragmentAdapter: RecyclerViewAdapter
+    private lateinit var searchFragmentAdapter: SearchRecyclerViewAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,6 +41,7 @@ class MainActivity : AppCompatActivity() {
     }
 
 
+    @SuppressLint("UseCompatLoadingForDrawables")
     private fun setViewPager() {
         val items = tabText()
 
@@ -51,8 +51,7 @@ class MainActivity : AppCompatActivity() {
                 tab.text = items[position]
                 tab.icon = when (position) {
                     0 -> getDrawable(R.drawable.home)
-                    1 -> getDrawable(R.drawable.choice_icon)
-                    else -> null
+                    else -> getDrawable(R.drawable.choice_icon)
                 }
             }.attach()
         }

@@ -39,7 +39,8 @@
                 android:layout_height="30dp"
                 android:layout_gravity="end"
                 android:layout_marginTop="15dp"
-                android:src="@drawable/choice_icon"
+                android:src="@drawable/heart_full"
+                android:visibility="gone"
                 tools:ignore="MissingConstraints" />
 
         </FrameLayout>

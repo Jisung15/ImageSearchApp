@@ -2,7 +2,9 @@ package com.example.imagesearchapp.recyclerView
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.imagesearchapp.R
@@ -85,11 +87,11 @@ class SearchRecyclerViewAdapter(
         var check = false
         holder.image.setOnClickListener {
             if (check) {
-                holder.choiceButton.setImageResource(R.drawable.home)
+                holder.choiceButton.visibility = View.VISIBLE
                 newDataList.add(itemList)
                 check = false
             } else {
-                holder.choiceButton.setImageResource(R.drawable.choice_icon)
+                holder.choiceButton.visibility = View.GONE
                 newDataList.remove(itemList)
                 check = true
             }

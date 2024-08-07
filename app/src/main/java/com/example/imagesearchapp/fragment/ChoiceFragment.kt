@@ -14,7 +14,7 @@ import com.example.imagesearchapp.dataclass.SubmitDataItem
 class ChoiceFragment : Fragment() {
     private var _binding: FragmentChoiceBinding? = null
     private val binding get() = _binding!!
-    private lateinit var adapter: ChoiceRecyclerViewAdapter
+//    private lateinit var adapter: ChoiceRecyclerViewAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -29,7 +29,7 @@ class ChoiceFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.recyclerView.layoutManager = GridLayoutManager(requireContext(), 2)
-        binding.recyclerView.adapter = adapter
+//        binding.recyclerView.adapter = adapter
     }
 
     override fun onDestroyView() {

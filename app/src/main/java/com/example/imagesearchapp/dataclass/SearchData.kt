@@ -15,6 +15,7 @@ sealed class SubmitDataItem {
         val displaySitename: String?,
         @SerializedName("thumbnail_url")
         val thumbnail: String?,
+        var selected: Boolean = false
     ) : SubmitDataItem()
 
     data class VideoDocument(
@@ -24,5 +25,6 @@ sealed class SubmitDataItem {
         val thumbnail: String?,
         @SerializedName("title")
         val title: String?,
+        var selected: Boolean = false
     ) : SubmitDataItem()
 }

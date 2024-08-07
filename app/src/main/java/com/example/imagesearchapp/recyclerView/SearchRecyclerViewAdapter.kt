@@ -69,6 +69,13 @@ class SearchRecyclerViewAdapter(
             holder.date.text = dataTimeFormat
             holder.text.text = "[Image] " + itemList.displaySitename
 
+            holder.choiceButton.visibility = if (itemList.selected) View.VISIBLE else View.GONE
+
+            holder.image.setOnClickListener {
+                itemList.selected = !itemList.selected
+                notifyItemChanged(position)
+            }
+
         } else if (itemList is SubmitDataItem.VideoDocument) {
 
             Glide.with(holder.itemView)
@@ -82,20 +89,27 @@ class SearchRecyclerViewAdapter(
             holder.date.text = dataTimeFormat
             holder.text.text = "[Video] " + itemList.title
 
+            holder.choiceButton.visibility = if (itemList.selected) View.VISIBLE else View.GONE
+
+            holder.image.setOnClickListener {
+                itemList.selected = !itemList.selected
+                notifyItemChanged(position)
+            }
+
         }
 
-        var check = false
-        holder.image.setOnClickListener {
-            if (check) {
-                holder.choiceButton.visibility = View.VISIBLE
-                newDataList.add(itemList)
-                check = false
-            } else {
-                holder.choiceButton.visibility = View.GONE
-                newDataList.remove(itemList)
-                check = true
-            }
-        }
+//        var check = false
+//        holder.image.setOnClickListener {
+//            if (check) {
+//                holder.choiceButton.visibility = View.VISIBLE
+//                newDataList.add(itemList)
+//                check = false
+//            } else {
+//                holder.choiceButton.visibility = View.GONE
+//                newDataList.remove(itemList)
+//                check = true
+//            }
+//        }
     }
 
     fun getLikedItems() : List<SubmitDataItem?>{

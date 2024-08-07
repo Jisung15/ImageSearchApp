@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/sampleItem"
@@ -51,7 +51,6 @@
             android:text="@string/sample_item_text"
             android:textSize="15sp"
             android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/frame_layout" />
 
@@ -61,8 +60,6 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="10dp"
             android:text="@string/sample_item_date"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/search_text_value" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -17,6 +17,7 @@ import com.example.imagesearchapp.R
 import com.example.imagesearchapp.retrofit.RetrofitClient
 import com.example.imagesearchapp.recyclerView.SearchRecyclerViewAdapter
 import com.example.imagesearchapp.databinding.FragmentSearchBinding
+import com.example.imagesearchapp.dataclass.SubmitDataItem
 import kotlinx.coroutines.launch
 
 class SearchFragment : Fragment() {
@@ -110,10 +111,31 @@ class SearchFragment : Fragment() {
                 size = 30
             )
 
-            val imageDocumentData = imageResponseData.documents!!
-            val videoDocumentData = videoResponseData.documents!!
+            val imageDocumentData = imageResponseData.documents ?: emptyList()
+            val videoDocumentData = videoResponseData.documents ?: emptyList()
+            val submitData = mutableListOf<SubmitDataItem>()
 
-            adapter = SearchRecyclerViewAdapter(imageDocumentData)
+            for (imageDocument in imageDocumentData) {
+                val imageItem = SubmitDataItem.ImageDocument(
+                    datetime = imageDocument?.datetime,
+                    displaySitename = imageDocument?.displaySitename,
+                    thumbnail = imageDocument?.thumbnailUrl
+                )
+
+                submitData.add(imageItem)
+            }
+
+            for (videoDocument in videoDocumentData) {
+                val videoItem = SubmitDataItem.VideoDocument(
+                    datetime = videoDocument?.datetime,
+                    title = videoDocument?.title,
+                    thumbnail = videoDocument?.thumbnail
+                )
+
+                submitData.add(videoItem)
+            }
+
+            adapter = SearchRecyclerViewAdapter(submitData)
             recyclerViewAdapter()
         }
     }

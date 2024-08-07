@@ -8,13 +8,12 @@ import androidx.appcompat.view.menu.MenuBuilder
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.imagesearchapp.databinding.ActivityMainBinding
-import com.example.imagesearchapp.recyclerView.SearchRecyclerViewAdapter
 import com.google.android.material.tabs.TabLayoutMediator
 
 class MainActivity : AppCompatActivity() {
 
     private val binding by lazy { ActivityMainBinding.inflate(layoutInflater) }
-    private lateinit var searchFragmentAdapter: SearchRecyclerViewAdapter
+//    private lateinit var searchFragmentAdapter: SearchRecyclerViewAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,16 +28,17 @@ class MainActivity : AppCompatActivity() {
         setViewPager()
 
 //        val listData = searchFragmentAdapter.getLikedItems()
-//
-//        val newList = ChoiceFragment()
+//        fragment(listData)
+    }
+
+//    private fun fragment(listData: List<SubmitDataItem?>) {
+//        val fragment = ChoiceFragment.newInstance(listData)
 //        supportFragmentManager.beginTransaction()
-//            .replace(R.id.view_pager, newList)
+//            .replace(R.id.view_pager, fragment)
 //            .setReorderingAllowed(true)
 //            .addToBackStack(null)
 //            .commit()
-//        newList.setList(listData)
-
-    }
+//    }
 
     @SuppressLint("UseCompatLoadingForDrawables")
     private fun setViewPager() {

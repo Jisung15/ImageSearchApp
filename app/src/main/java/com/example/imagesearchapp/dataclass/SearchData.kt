@@ -1,11 +1,11 @@
 package com.example.imagesearchapp.dataclass
 
-sealed class SubmitDataItem (
+sealed class SubmitDataItem {
 //    val thumbnail: String?
 //    val datetime: String?
 //    val title: String?
 //    val displaySitename: String?
-
+//
 //    data class ImageDocument(
 //        @SerializedName("datetime")
 //        override val datetime: String?,
@@ -13,7 +13,7 @@ sealed class SubmitDataItem (
 //        override val displaySitename: String?,
 //        @SerializedName("thumbnail_url")
 //        override val thumbnail: String?,
-//    )
+//    ) : SubmitDataItem()
 //
 //    data class VideoDocument(
 //        @SerializedName("datetime")
@@ -22,5 +22,5 @@ sealed class SubmitDataItem (
 //        override val thumbnail: String?,
 //        @SerializedName("title")
 //        override val title: String?,
-//    )
-)
+//    ) : SubmitDataItem()
+}

@@ -10,7 +10,7 @@ import com.example.imagesearchapp.databinding.GridItemRecyclerViewBinding
 class ChoiceRecyclerViewAdapter(private val items: List<ImageDocument?>) :
     RecyclerView.Adapter<ChoiceRecyclerViewAdapter.Holder>() {
 
-    inner class Holder(private val binding: GridItemRecyclerViewBinding) : RecyclerView.ViewHolder(binding.root) {
+    class Holder(private val binding: GridItemRecyclerViewBinding) : RecyclerView.ViewHolder(binding.root) {
         val image = binding.searchImageValue
         val imageText = binding.searchTextValue
         val imageDate = binding.searchDateValue

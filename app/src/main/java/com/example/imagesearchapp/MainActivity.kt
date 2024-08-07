@@ -40,7 +40,6 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-
     @SuppressLint("UseCompatLoadingForDrawables")
     private fun setViewPager() {
         val items = tabText()

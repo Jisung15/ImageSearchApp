@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
-import com.example.imagesearchapp.dataclass.ImageDocument
 import com.example.imagesearchapp.recyclerView.ChoiceRecyclerViewAdapter
 import com.example.imagesearchapp.databinding.FragmentChoiceBinding
 

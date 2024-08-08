@@ -13,7 +13,7 @@
 - 검색 결과 화면
 <img src ="https://github.com/user-attachments/assets/f7373301-9921-4485-b8a7-880a1e398aaf" width="400" height="700"/>
 
-    -> "르세라핌" 같은 키워드를 입력하고 검색 버튼을 누르면 키워드에 맞는 검색 결과를 보여주는 화면
+    -> "르세라핌"과 같은 키워드를 입력하고 검색 버튼을 누르면 키워드에 맞는 검색 결과를 보여주는 화면
   
     -> Floating Button을 누르면 검색 결과가 나온 화면에서 가장 위쪽에 위치한 결과로 자동 이동
 <img src ="https://github.com/user-attachments/assets/242f8d64-efe6-42f7-a18f-2a53d6633046" width="400" height="700"/>

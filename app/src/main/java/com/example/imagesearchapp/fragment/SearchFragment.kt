@@ -14,12 +14,12 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.imagesearchapp.BookMarkViewModel
+import com.example.imagesearchapp.viewModel.BookMarkViewModel
 import com.example.imagesearchapp.R
 import com.example.imagesearchapp.retrofit.RetrofitClient
 import com.example.imagesearchapp.recyclerView.SearchRecyclerViewAdapter
 import com.example.imagesearchapp.databinding.FragmentSearchBinding
-import com.example.imagesearchapp.dataclass.SubmitDataItem
+import com.example.imagesearchapp.dataClass.SubmitDataItem
 import kotlinx.coroutines.launch
 
 class SearchFragment : Fragment() {
@@ -55,10 +55,12 @@ class SearchFragment : Fragment() {
 
                 binding.recyclerView.setBackgroundColor(Color.parseColor("#00000000"))
 
-                Toast.makeText(requireContext(), "${searchText}(을/를) 검색하셨습니다.", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), "${searchText}(을/를) 검색하셨습니다.", Toast.LENGTH_SHORT)
+                    .show()
 
             } else {
-                Toast.makeText(requireContext(), R.string.search_bar_hint, Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), R.string.search_bar_hint, Toast.LENGTH_SHORT)
+                    .show()
                 return@setOnClickListener
             }
         }
@@ -75,7 +77,8 @@ class SearchFragment : Fragment() {
 
     @SuppressLint("SuspiciousIndentation")
     private fun hideKeyBoard() {
-        val hideKeyBoard = requireContext().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        val hideKeyBoard =
+            requireContext().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         hideKeyBoard.hideSoftInputFromWindow(binding.searchTextInput.windowToken, 0)
     }
 

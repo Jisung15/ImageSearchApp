@@ -7,14 +7,12 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.imagesearchapp.databinding.GridItemRecyclerViewBinding
-import com.example.imagesearchapp.dataclass.SubmitDataItem
+import com.example.imagesearchapp.dataClass.SubmitDataItem
 import java.time.OffsetDateTime
 import java.time.format.DateTimeFormatter
 
 class SearchRecyclerViewAdapter(
     private val submitDataItems: MutableList<SubmitDataItem>?
-//    private val imageItems: List<ImageDocument?>,
-//    private val videoItems: List<VideoDocument?>
 ) : RecyclerView.Adapter<SearchRecyclerViewAdapter.Holder>() {
 
     interface OnBookMarkClicked {
@@ -33,12 +31,11 @@ class SearchRecyclerViewAdapter(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
-        val binding = GridItemRecyclerViewBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding =
+            GridItemRecyclerViewBinding.inflate(LayoutInflater.from(parent.context), parent, false)
 
         return Holder(binding)
     }
-
-//    private val newDataList = mutableListOf<SubmitDataItem>()
 
     @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: Holder, position: Int) {
@@ -103,10 +100,6 @@ class SearchRecyclerViewAdapter(
         submitDataItems?.addAll(newDataItems)
         notifyDataSetChanged()
     }
-
-//    fun getLikedItems(): List<SubmitDataItem?> {
-//        return newDataList.toList()
-//    }
 
     override fun getItemCount(): Int {
         return submitDataItems?.size ?: 0

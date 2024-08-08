@@ -7,9 +7,9 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.GridLayoutManager
-import com.example.imagesearchapp.BookMarkViewModel
+import com.example.imagesearchapp.viewModel.BookMarkViewModel
 import com.example.imagesearchapp.databinding.FragmentBookmarkBinding
-import com.example.imagesearchapp.dataclass.SubmitDataItem
+import com.example.imagesearchapp.dataClass.SubmitDataItem
 import com.example.imagesearchapp.recyclerView.SearchRecyclerViewAdapter
 
 class BookMarkFragment : Fragment() {
@@ -17,7 +17,6 @@ class BookMarkFragment : Fragment() {
     private val binding get() = _binding!!
     private lateinit var adapter: SearchRecyclerViewAdapter
     private val viewModel: BookMarkViewModel by activityViewModels()
-//    private val choiceList : List<SubmitDataItem?>? get()
 
     override fun onCreateView(
         inflater: LayoutInflater,

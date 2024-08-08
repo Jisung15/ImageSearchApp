@@ -20,11 +20,10 @@
 
         <EditText
             android:id="@+id/searchTextInput"
+            style="@style/search_bar_edit"
             android:layout_width="0dp"
             android:layout_height="40dp"
-            android:layout_marginHorizontal="10dp"
             android:background="@color/white"
-            style="@style/search_bar_edit"
             android:hint="@string/search_bar_hint"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/searchButton"
@@ -33,10 +32,9 @@
 
         <Button
             android:id="@+id/searchButton"
+            style="@style/searchButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="right|center_vertical"
-            android:layout_marginEnd="10dp"
             android:text="@string/search_button_text"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/searchTextInput" />
@@ -45,19 +43,17 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
+        style="@style/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginHorizontal="10dp"
-        android:layout_marginTop="15dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/fl_search_bar" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/floating_button"
+        style="@style/floating_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="20dp"
-        android:layout_marginBottom="20dp"
         android:backgroundTint="@color/gray"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

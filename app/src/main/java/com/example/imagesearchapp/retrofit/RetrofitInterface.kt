@@ -1,7 +1,7 @@
 package com.example.imagesearchapp.retrofit
 
-import com.example.imagesearchapp.dataclass.ImageData
-import com.example.imagesearchapp.dataclass.VideoData
+import com.example.imagesearchapp.dataClass.ImageData
+import com.example.imagesearchapp.dataClass.VideoData
 import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.http.Query

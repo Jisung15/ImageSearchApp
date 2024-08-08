@@ -1,5 +1,7 @@
 # 이미지 검색 앱 만들기
 
+(시연 영상은 용량 이슈로 없습니다.)
+
 - 메인 화면
 
 <img src ="https://github.com/user-attachments/assets/825104fd-d819-470b-9b43-7eaf87bf771c" width="400" height="700"/>

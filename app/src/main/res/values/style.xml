@@ -1,2 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <style name="choice_fragment">
+        <item name="android:layout_marginHorizontal">10dp</item>
+        <item name="background">@android:color/transparent</item>
+    </style>
+
+    <style name="recyclerView_item_image">
+        <item name="android:padding">10dp</item>
+        <item name="android:scaleType">centerCrop</item>
+    </style>
+
+    <style name="recyclerView_item_choice_button">
+        <item name="android:layout_gravity">end</item>
+        <item name="android:visibility">gone</item>
+    </style>
+
+    <style name="search_text_value">
+        <item name="android:textSize">15sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="search_bar_edit">
+        <item name="android:clickable">true</item>
+        <item name="android:focusable">true</item>
+        <item name="android:focusableInTouchMode">true</item>
+    </style>
+</resources>

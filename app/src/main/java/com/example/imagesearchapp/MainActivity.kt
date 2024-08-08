@@ -13,7 +13,6 @@ import com.google.android.material.tabs.TabLayoutMediator
 class MainActivity : AppCompatActivity() {
 
     private val binding by lazy { ActivityMainBinding.inflate(layoutInflater) }
-//    private lateinit var searchFragmentAdapter: SearchRecyclerViewAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,19 +25,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         setViewPager()
-
-//        val listData = searchFragmentAdapter.getLikedItems()
-//        fragment(listData)
     }
-
-//    private fun fragment(listData: List<SubmitDataItem?>) {
-//        val fragment = ChoiceFragment.newInstance(listData)
-//        supportFragmentManager.beginTransaction()
-//            .replace(R.id.view_pager, fragment)
-//            .setReorderingAllowed(true)
-//            .addToBackStack(null)
-//            .commit()
-//    }
 
     @SuppressLint("UseCompatLoadingForDrawables")
     private fun setViewPager() {

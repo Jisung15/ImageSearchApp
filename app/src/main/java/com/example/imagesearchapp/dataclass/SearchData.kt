@@ -3,11 +3,6 @@ package com.example.imagesearchapp.dataclass
 import com.google.gson.annotations.SerializedName
 
 sealed class SubmitDataItem {
-//    val thumbnail: String?
-//    val datetime: String?
-//    val title: String?
-//    val displaySitename: String?
-
     data class ImageDocument(
         @SerializedName("datetime")
         val datetime: String?,

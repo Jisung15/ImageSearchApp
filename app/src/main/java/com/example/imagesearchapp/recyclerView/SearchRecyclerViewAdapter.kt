@@ -12,15 +12,17 @@ import java.time.OffsetDateTime
 import java.time.format.DateTimeFormatter
 
 class SearchRecyclerViewAdapter(
+    private val submitDataItems: MutableList<SubmitDataItem>?
 //    private val imageItems: List<ImageDocument?>,
 //    private val videoItems: List<VideoDocument?>
-    private val submitDataItem: List<SubmitDataItem>,
 ) : RecyclerView.Adapter<SearchRecyclerViewAdapter.Holder>() {
 
-//    companion object {
-//        private const val TYPE_IMAGE = 0
-//        private const val TYPE_VIDEO = 1
-//    }
+    interface OnBookMarkClicked {
+        fun onAddBookMark(item: SubmitDataItem?)
+        fun onRemoveBookMark(item: SubmitDataItem?)
+    }
+
+    var clicked: OnBookMarkClicked? = null
 
     class Holder(private val binding: GridItemRecyclerViewBinding) :
         RecyclerView.ViewHolder(binding.root) {
@@ -40,19 +42,7 @@ class SearchRecyclerViewAdapter(
 
     @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: Holder, position: Int) {
-//        val item = submitDataItem[position]
-//        Glide.with(holder.itemView)
-//            .load(item?.thumbnailUrl)
-//            .into(holder.image)
-//
-//        val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")
-//        val dateTime = OffsetDateTime.parse(item?.datetime)
-//        val dataTimeFormat = dateTime?.format(formatter)
-//
-//        holder.date.text = dataTimeFormat
-//        holder.text.text = "[Image] " + item?.displaySitename
-
-        val itemList = submitDataItem[position]
+        val itemList = submitDataItems?.get(position)
 
         if (itemList is SubmitDataItem.ImageDocument) {
 
@@ -70,6 +60,12 @@ class SearchRecyclerViewAdapter(
             holder.choiceButton.visibility = if (itemList.selected) View.VISIBLE else View.GONE
 
             holder.image.setOnClickListener {
+                if (!itemList.selected) {
+                    clicked?.onAddBookMark(submitDataItems?.get(position))
+                } else {
+                    clicked?.onRemoveBookMark(submitDataItems?.get(position))
+                }
+
                 itemList.selected = !itemList.selected
                 notifyItemChanged(position)
             }
@@ -90,37 +86,33 @@ class SearchRecyclerViewAdapter(
             holder.choiceButton.visibility = if (itemList.selected) View.VISIBLE else View.GONE
 
             holder.image.setOnClickListener {
+                if (!itemList.selected) {
+                    clicked?.onAddBookMark(submitDataItems?.get(position))
+                } else {
+                    clicked?.onRemoveBookMark(submitDataItems?.get(position))
+                }
+
                 itemList.selected = !itemList.selected
                 notifyItemChanged(position)
             }
-
         }
-
-//        var check = false
-//        holder.image.setOnClickListener {
-//            if (check) {
-//                holder.choiceButton.visibility = View.VISIBLE
-//                newDataList.add(itemList)
-//                check = false
-//            } else {
-//                holder.choiceButton.visibility = View.GONE
-//                newDataList.remove(itemList)
-//                check = true
-//            }
-//        }
     }
 
-    fun getLikedItems() : List<SubmitDataItem?>{
+    fun updateList(newDataItems: List<SubmitDataItem>) {
+        submitDataItems?.clear()
+        submitDataItems?.addAll(newDataItems)
+        notifyDataSetChanged()
+    }
+
+    fun getLikedItems(): List<SubmitDataItem?> {
         return newDataList.toList()
     }
 
     override fun getItemCount(): Int {
-        return submitDataItem.size
+        return submitDataItems?.size ?: 0
     }
 
     override fun getItemId(position: Int): Long {
         return position.toLong()
     }
 }
-
-// async를 기억하자

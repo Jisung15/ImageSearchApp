@@ -10,9 +10,11 @@ import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.imagesearchapp.BookViewModel
 import com.example.imagesearchapp.R
 import com.example.imagesearchapp.retrofit.RetrofitClient
 import com.example.imagesearchapp.recyclerView.SearchRecyclerViewAdapter
@@ -25,7 +27,7 @@ class SearchFragment : Fragment() {
     private val binding get() = _binding!!
     private var searchText: String = ""
     private lateinit var adapter: SearchRecyclerViewAdapter
-//    private val viewModel : SearchViewModel by viewModels()
+    private val viewModel: BookViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -48,9 +50,9 @@ class SearchFragment : Fragment() {
 
             if (binding.searchTextInput.text.toString().isNotEmpty()) {
                 searchText = binding.searchTextInput.text.toString()
-
                 dataSaved(searchText)
                 searchResult(searchText)
+
                 binding.recyclerView.setBackgroundColor(Color.parseColor("#00000000"))
 
                 Toast.makeText(requireContext(), "${searchText}(을/를) 검색하셨습니다.", Toast.LENGTH_SHORT).show()
@@ -59,15 +61,6 @@ class SearchFragment : Fragment() {
                 Toast.makeText(requireContext(), R.string.search_bar_hint, Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
-
-//            viewModel.imageDocuments.observe(this, Observer { "lamda" ->
-//                adapter.notifyDataSetChanged()
-//            })
-//
-//            binding.searchButton.setOnClickListener {
-//                val adapter = binding.searchTextInput.text.toString()
-//                viewModel.update(adapter)
-//            }
         }
 
         binding.floatingButton.setOnClickListener {
@@ -135,14 +128,29 @@ class SearchFragment : Fragment() {
                 submitData.add(videoItem)
             }
 
-            adapter = SearchRecyclerViewAdapter(submitData)
-            recyclerViewAdapter()
-        }
-    }
+            submitData.sortBy {
+                when (it) {
+                    is SubmitDataItem.ImageDocument -> it.datetime
+                    is SubmitDataItem.VideoDocument -> it.datetime
+                }
+            }
 
-    private fun recyclerViewAdapter() {
-        binding.recyclerView.layoutManager = GridLayoutManager(requireContext(), 2)
-        binding.recyclerView.adapter = adapter
+            adapter = SearchRecyclerViewAdapter(submitData)
+            binding.recyclerView.layoutManager = GridLayoutManager(requireContext(), 2)
+            binding.recyclerView.adapter = adapter
+
+            adapter.clicked = object : SearchRecyclerViewAdapter.OnBookMarkClicked {
+                override fun onAddBookMark(item: SubmitDataItem?) {
+                    item ?: return
+                    viewModel.addBookMark(item)
+                }
+
+                override fun onRemoveBookMark(item: SubmitDataItem?) {
+                    item ?: return
+                    viewModel.removeBookMark(item)
+                }
+            }
+        }
     }
 
     private fun floatingButton() {

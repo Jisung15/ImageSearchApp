@@ -7,16 +7,16 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.GridLayoutManager
-import com.example.imagesearchapp.BookViewModel
-import com.example.imagesearchapp.databinding.FragmentChoiceBinding
+import com.example.imagesearchapp.BookMarkViewModel
+import com.example.imagesearchapp.databinding.FragmentBookmarkBinding
 import com.example.imagesearchapp.dataclass.SubmitDataItem
 import com.example.imagesearchapp.recyclerView.SearchRecyclerViewAdapter
 
-class ChoiceFragment : Fragment() {
-    private var _binding: FragmentChoiceBinding? = null
+class BookMarkFragment : Fragment() {
+    private var _binding: FragmentBookmarkBinding? = null
     private val binding get() = _binding!!
     private lateinit var adapter: SearchRecyclerViewAdapter
-    private val viewModel: BookViewModel by activityViewModels()
+    private val viewModel: BookMarkViewModel by activityViewModels()
 //    private val choiceList : List<SubmitDataItem?>? get()
 
     override fun onCreateView(
@@ -24,7 +24,7 @@ class ChoiceFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentChoiceBinding.inflate(inflater, container, false)
+        _binding = FragmentBookmarkBinding.inflate(inflater, container, false)
         return binding.root
     }
 

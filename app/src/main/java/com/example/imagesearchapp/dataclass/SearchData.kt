@@ -3,7 +3,7 @@ package com.example.imagesearchapp.dataclass
 import com.google.gson.annotations.SerializedName
 
 sealed class SubmitDataItem {
-    data class ImageDocument(
+    data class Image(
         @SerializedName("datetime")
         val datetime: String?,
         @SerializedName("display_sitename")
@@ -13,7 +13,7 @@ sealed class SubmitDataItem {
         var selected: Boolean = false
     ) : SubmitDataItem()
 
-    data class VideoDocument(
+    data class Video(
         @SerializedName("datetime")
         val datetime: String?,
         @SerializedName("thumbnail")

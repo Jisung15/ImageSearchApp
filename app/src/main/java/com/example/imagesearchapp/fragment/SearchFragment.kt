@@ -14,7 +14,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.imagesearchapp.BookViewModel
+import com.example.imagesearchapp.BookMarkViewModel
 import com.example.imagesearchapp.R
 import com.example.imagesearchapp.retrofit.RetrofitClient
 import com.example.imagesearchapp.recyclerView.SearchRecyclerViewAdapter
@@ -27,7 +27,7 @@ class SearchFragment : Fragment() {
     private val binding get() = _binding!!
     private var searchText: String = ""
     private lateinit var adapter: SearchRecyclerViewAdapter
-    private val viewModel: BookViewModel by activityViewModels()
+    private val viewModel: BookMarkViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -69,26 +69,26 @@ class SearchFragment : Fragment() {
     }
 
     private fun dataLoad() {
-        val shared = requireContext().getSharedPreferences("shared", 0)
-        binding.searchTextInput.setText(shared.getString("name", ""))
+        val loadData = requireContext().getSharedPreferences("shared", 0)
+        binding.searchTextInput.setText(loadData.getString("name", ""))
     }
 
     @SuppressLint("SuspiciousIndentation")
     private fun hideKeyBoard() {
-        val inputMethodManager = requireContext().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-        inputMethodManager.hideSoftInputFromWindow(binding.searchTextInput.windowToken, 0)
+        val hideKeyBoard = requireContext().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        hideKeyBoard.hideSoftInputFromWindow(binding.searchTextInput.windowToken, 0)
     }
 
     private fun dataSaved(searchText: String) {
-        val shared = requireContext().getSharedPreferences("shared", 0)
-        val edit = shared.edit()
+        val saveData = requireContext().getSharedPreferences("shared", 0)
+        val edit = saveData.edit()
         edit.putString("name", searchText)
         edit.apply()
     }
 
     private fun searchResult(query: String) {
         lifecycleScope.launch {
-            val imageResponseData = RetrofitClient.dustNetWork.getImage(
+            val imageResponseData = RetrofitClient.makeRetrofit.getImage(
                 apiKey = "KakaoAK d9e31c60db2fd236337a605b8b0128bf",
                 query = query,
                 sort = "recency",
@@ -96,7 +96,7 @@ class SearchFragment : Fragment() {
                 size = 80
             )
 
-            val videoResponseData = RetrofitClient.dustNetWork.getVideo(
+            val videoResponseData = RetrofitClient.makeRetrofit.getVideo(
                 apiKey = "KakaoAK d9e31c60db2fd236337a605b8b0128bf",
                 query = query,
                 sort = "recency",
@@ -106,36 +106,36 @@ class SearchFragment : Fragment() {
 
             val imageDocumentData = imageResponseData.documents ?: emptyList()
             val videoDocumentData = videoResponseData.documents ?: emptyList()
-            val submitData = mutableListOf<SubmitDataItem>()
+            val submitDataList = mutableListOf<SubmitDataItem>()
 
             for (imageDocument in imageDocumentData) {
-                val imageItem = SubmitDataItem.ImageDocument(
+                val imageItem = SubmitDataItem.Image(
                     datetime = imageDocument?.datetime,
                     displaySitename = imageDocument?.displaySitename,
                     thumbnail = imageDocument?.thumbnailUrl
                 )
 
-                submitData.add(imageItem)
+                submitDataList.add(imageItem)
             }
 
             for (videoDocument in videoDocumentData) {
-                val videoItem = SubmitDataItem.VideoDocument(
+                val videoItem = SubmitDataItem.Video(
                     datetime = videoDocument?.datetime,
                     title = videoDocument?.title,
                     thumbnail = videoDocument?.thumbnail
                 )
 
-                submitData.add(videoItem)
+                submitDataList.add(videoItem)
             }
 
-            submitData.sortBy {
+            submitDataList.sortBy {
                 when (it) {
-                    is SubmitDataItem.ImageDocument -> it.datetime
-                    is SubmitDataItem.VideoDocument -> it.datetime
+                    is SubmitDataItem.Image -> it.datetime
+                    is SubmitDataItem.Video -> it.datetime
                 }
             }
 
-            adapter = SearchRecyclerViewAdapter(submitData)
+            adapter = SearchRecyclerViewAdapter(submitDataList)
             binding.recyclerView.layoutManager = GridLayoutManager(requireContext(), 2)
             binding.recyclerView.adapter = adapter
 

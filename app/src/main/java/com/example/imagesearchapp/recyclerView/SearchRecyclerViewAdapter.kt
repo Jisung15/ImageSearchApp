@@ -29,7 +29,7 @@ class SearchRecyclerViewAdapter(
         val image = binding.searchImageValue
         val text = binding.searchTextValue
         val date = binding.searchDateValue
-        val choiceButton = binding.choiceButton
+        val bookMarkButton = binding.choiceButton
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
@@ -38,13 +38,13 @@ class SearchRecyclerViewAdapter(
         return Holder(binding)
     }
 
-    private val newDataList = mutableListOf<SubmitDataItem>()
+//    private val newDataList = mutableListOf<SubmitDataItem>()
 
     @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: Holder, position: Int) {
         val itemList = submitDataItems?.get(position)
 
-        if (itemList is SubmitDataItem.ImageDocument) {
+        if (itemList is SubmitDataItem.Image) {
 
             Glide.with(holder.itemView)
                 .load(itemList.thumbnail)
@@ -57,7 +57,7 @@ class SearchRecyclerViewAdapter(
             holder.date.text = dataTimeFormat
             holder.text.text = "[Image] " + itemList.displaySitename
 
-            holder.choiceButton.visibility = if (itemList.selected) View.VISIBLE else View.GONE
+            holder.bookMarkButton.visibility = if (itemList.selected) View.VISIBLE else View.GONE
 
             holder.image.setOnClickListener {
                 if (!itemList.selected) {
@@ -70,7 +70,7 @@ class SearchRecyclerViewAdapter(
                 notifyItemChanged(position)
             }
 
-        } else if (itemList is SubmitDataItem.VideoDocument) {
+        } else if (itemList is SubmitDataItem.Video) {
 
             Glide.with(holder.itemView)
                 .load(itemList.thumbnail)
@@ -83,7 +83,7 @@ class SearchRecyclerViewAdapter(
             holder.date.text = dataTimeFormat
             holder.text.text = "[Video] " + itemList.title
 
-            holder.choiceButton.visibility = if (itemList.selected) View.VISIBLE else View.GONE
+            holder.bookMarkButton.visibility = if (itemList.selected) View.VISIBLE else View.GONE
 
             holder.image.setOnClickListener {
                 if (!itemList.selected) {
@@ -104,9 +104,9 @@ class SearchRecyclerViewAdapter(
         notifyDataSetChanged()
     }
 
-    fun getLikedItems(): List<SubmitDataItem?> {
-        return newDataList.toList()
-    }
+//    fun getLikedItems(): List<SubmitDataItem?> {
+//        return newDataList.toList()
+//    }
 
     override fun getItemCount(): Int {
         return submitDataItems?.size ?: 0

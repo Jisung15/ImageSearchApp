@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.imagesearchapp.dataclass.SubmitDataItem
 
-class BookViewModel : ViewModel() {
+class BookMarkViewModel : ViewModel() {
 
     private val _bookMarkList = MutableLiveData<List<SubmitDataItem>>()
     val bookMarkList: LiveData<List<SubmitDataItem>> get() = _bookMarkList

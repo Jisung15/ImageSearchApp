@@ -34,5 +34,5 @@ object RetrofitClient {
         .client(createOkHttpClient())
         .build()
 
-    val dustNetWork: RetrofitInterface = retrofit.create(RetrofitInterface::class.java)
+    val makeRetrofit: RetrofitInterface = retrofit.create(RetrofitInterface::class.java)
 }

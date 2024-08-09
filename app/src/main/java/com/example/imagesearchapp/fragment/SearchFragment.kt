@@ -70,7 +70,7 @@ class SearchFragment : Fragment() {
 
                 binding.recyclerView.setBackgroundColor(Color.parseColor("#00000000"))
 
-                Toast.makeText(requireContext(), "${searchText}(을/를) 검색하셨습니다.", Toast.LENGTH_SHORT)
+                Toast.makeText(requireContext(), "검색한 키워드 = $searchText \n 검색이 성공적으로 완료되었습니다!", Toast.LENGTH_SHORT)
                     .show()
 
             } else {

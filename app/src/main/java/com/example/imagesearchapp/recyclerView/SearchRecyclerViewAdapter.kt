@@ -65,9 +65,9 @@ class SearchRecyclerViewAdapter(
             // 나중에 별도 리스트에 add, remove하는 건 ViewModel에서 한다.
             holder.image.setOnClickListener {
                 if (!itemList.selected) {
-                    clicked?.onAddBookMark(submitDataItems?.get(position))
+                    clicked?.onAddBookMark(itemList)
                 } else {
-                    clicked?.onRemoveBookMark(submitDataItems?.get(position))
+                    clicked?.onRemoveBookMark(itemList)
                 }
 
                 itemList.selected = !itemList.selected

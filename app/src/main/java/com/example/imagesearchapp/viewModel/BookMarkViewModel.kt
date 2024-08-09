@@ -7,7 +7,7 @@ import com.example.imagesearchapp.dataClass.SubmitDataItem
 
 class BookMarkViewModel : ViewModel() {
 
-    // 리스트를 받아와서..? 그걸 LiveData로 설정하고 지켜보다가 리스트가 바뀌면 bookMarkList를 BookMarkFragment에 반영하는 걸로 이해하고 있다.
+    // 리스트를 받아와서..? 그걸 LiveData로 설정하고 사진이 클릭되면 그걸 bookMarkList라는 새 리스트에 저장하고 그걸 가져다 쓰는 걸로 이해하고 있다.
     private val _bookMarkList = MutableLiveData<List<SubmitDataItem>>()
     val bookMarkList: LiveData<List<SubmitDataItem>> get() = _bookMarkList
 

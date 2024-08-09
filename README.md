@@ -4,7 +4,7 @@
 
 - 메인 화면
 
-<img src ="https://github.com/user-attachments/assets/825104fd-d819-470b-9b43-7eaf87bf771c" width="400" height="700"/>
+    <img src ="https://github.com/user-attachments/assets/825104fd-d819-470b-9b43-7eaf87bf771c" width="400" height="700"/>
 
     -> 검색창에 키워드를 입력하고 검색 버튼 누르면 검색 결과들이 나타나도록 구현
     

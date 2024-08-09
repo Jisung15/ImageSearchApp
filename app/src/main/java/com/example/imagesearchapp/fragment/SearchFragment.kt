@@ -28,6 +28,8 @@ class SearchFragment : Fragment() {
     private var searchText: String = ""
     private lateinit var adapter: SearchRecyclerViewAdapter
     private val viewModel: BookMarkViewModel by activityViewModels()
+    private var currentPage = 1
+    private var loading = false
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -45,13 +47,18 @@ class SearchFragment : Fragment() {
         dataLoad()
         binding.recyclerView.setBackgroundColor(Color.WHITE)
 
+        adapter = SearchRecyclerViewAdapter(mutableListOf())
+        binding.recyclerView.layoutManager = GridLayoutManager(requireContext(), 2)
+        binding.recyclerView.adapter = adapter
+
         binding.searchButton.setOnClickListener {
             hideKeyBoard()
 
             if (binding.searchTextInput.text.toString().isNotEmpty()) {
                 searchText = binding.searchTextInput.text.toString()
                 dataSaved(searchText)
-                searchResult(searchText)
+                currentPage = 1
+                searchResult(searchText, currentPage)
 
                 binding.recyclerView.setBackgroundColor(Color.parseColor("#00000000"))
 
@@ -68,6 +75,8 @@ class SearchFragment : Fragment() {
         binding.floatingButton.setOnClickListener {
             floatingButton()
         }
+
+        setUpScrollListener()
     }
 
     private fun dataLoad() {
@@ -89,21 +98,24 @@ class SearchFragment : Fragment() {
         edit.apply()
     }
 
-    private fun searchResult(query: String) {
+    private fun searchResult(query: String, page: Int) {
+        if (loading) return
+
+        loading = true
         lifecycleScope.launch {
             val imageResponseData = RetrofitClient.makeRetrofit.getImage(
                 apiKey = "KakaoAK d9e31c60db2fd236337a605b8b0128bf",
                 query = query,
                 sort = "recency",
-                page = 1,
-                size = 80
+                page = page,
+                size = 50
             )
 
             val videoResponseData = RetrofitClient.makeRetrofit.getVideo(
                 apiKey = "KakaoAK d9e31c60db2fd236337a605b8b0128bf",
                 query = query,
                 sort = "recency",
-                page = 1,
+                page = page,
                 size = 30
             )
 
@@ -138,9 +150,8 @@ class SearchFragment : Fragment() {
                 }
             }
 
-            adapter = SearchRecyclerViewAdapter(submitDataList)
-            binding.recyclerView.layoutManager = GridLayoutManager(requireContext(), 2)
-            binding.recyclerView.adapter = adapter
+            adapter.addItems(submitDataList)
+            loading = false
 
             adapter.clicked = object : SearchRecyclerViewAdapter.OnBookMarkClicked {
                 override fun onAddBookMark(item: SubmitDataItem?) {
@@ -154,6 +165,24 @@ class SearchFragment : Fragment() {
                 }
             }
         }
+    }
+
+    private fun setUpScrollListener() {
+        binding.recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                super.onScrolled(recyclerView, dx, dy)
+
+                val layoutManager = recyclerView.layoutManager as GridLayoutManager
+                val nowItemCount = recyclerView.childCount
+                val totalItemCount = layoutManager.itemCount
+                val firstVisibleItemPosition = layoutManager.findFirstVisibleItemPosition()
+
+                if (!loading && (totalItemCount-nowItemCount) <= (firstVisibleItemPosition) + 1) {
+                    currentPage++
+                    searchResult(searchText, currentPage)
+                }
+            }
+        })
     }
 
     private fun floatingButton() {

@@ -95,6 +95,12 @@ class SearchRecyclerViewAdapter(
         }
     }
 
+    fun addItems(newDataItems: List<SubmitDataItem>) {
+        val itemSize = submitDataItems?.size ?: 0
+        submitDataItems?.addAll(newDataItems)
+        notifyItemRangeInserted(itemSize, newDataItems.size)
+    }
+
     fun updateList(newDataItems: List<SubmitDataItem>) {
         submitDataItems?.clear()
         submitDataItems?.addAll(newDataItems)

@@ -12,6 +12,7 @@ class ViewPagerAdapter(activity: AppCompatActivity) : FragmentStateAdapter(activ
 
     override fun createFragment(position: Int): Fragment = when (position) {
         0 -> SearchFragment()
-        else -> BookMarkFragment()
+        1 -> BookMarkFragment()
+        else -> SearchFragment()
     }
 }

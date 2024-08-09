@@ -24,6 +24,7 @@ class MainActivity : AppCompatActivity() {
             insets
         }
 
+        // ViewPager 관련 메소드 호출
         setViewPager()
     }
 

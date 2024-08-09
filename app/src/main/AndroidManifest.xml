@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <!-- 인터넷 권한 추가 (이거 꼭 필요합니다. Retrofit 쓰려면 -->
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application

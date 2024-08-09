@@ -2,6 +2,7 @@ package com.example.imagesearchapp.dataClass
 
 import com.google.gson.annotations.SerializedName
 
+// RecyclerViewAdapter에 들어갈 친구들
 sealed class SubmitDataItem {
     data class Image(
         @SerializedName("datetime")

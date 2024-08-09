@@ -218,10 +218,9 @@ class SearchFragment : Fragment() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 super.onScrolled(recyclerView, dx, dy)
 
-                val layoutManager = recyclerView.layoutManager as GridLayoutManager
                 val nowItemCount = recyclerView.childCount   // 현재 아이템 개수
-                val totalItemCount = layoutManager.itemCount   // 총 아이템 개수
-                val firstVisibleItemPosition = layoutManager.findFirstVisibleItemPosition() // 마지막 아이템의 위치..? 라고 한다.
+                val totalItemCount = (recyclerView.layoutManager as GridLayoutManager).itemCount   // 총 아이템 개수
+                val firstVisibleItemPosition = (recyclerView.layoutManager as GridLayoutManager).findFirstVisibleItemPosition() // 마지막 아이템의 위치..? 라고 한다.
 
                 if (!loading && (totalItemCount-nowItemCount) <= (firstVisibleItemPosition) + 1) {   // 마지막 아이템에 스크롤이 도달하면
                     // 새 페이지를 만들고 다시 데이터 세팅(?)

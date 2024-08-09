@@ -6,9 +6,9 @@
 
 <img src ="https://github.com/user-attachments/assets/825104fd-d819-470b-9b43-7eaf87bf771c" width="400" height="700"/>
 
-    -> 검색창에 키워드를 입력하고 검색 버튼 누르면 검색 결과들이 나타나도록 구현
+-> 검색창에 키워드를 입력하고 검색 버튼 누르면 검색 결과들이 나타나도록 구현
     
-    -> 페이지는 총 2개로 구성되어 있으며, 검색 결과를 보여주는 화면과 즐겨찾기 화면으로 구성
+ -> 페이지는 총 2개로 구성되어 있으며, 검색 결과를 보여주는 화면과 즐겨찾기 화면으로 구성
 
 - 검색 결과 화면
 <img src ="https://github.com/user-attachments/assets/f7373301-9921-4485-b8a7-880a1e398aaf" width="400" height="700"/>

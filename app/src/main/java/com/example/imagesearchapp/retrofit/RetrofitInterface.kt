@@ -11,8 +11,8 @@ interface RetrofitInterface {
     suspend fun getImage(
         @Header("Authorization") apiKey: String,
         @Query("query") query: String,
-        @Query("sort") sort: String,
-        @Query("page") page: Int,
+        @Query("sort") sort: String = "recency",
+        @Query("page") page: Int = 1,
         @Query("size") size: Int
     ): ImageData
 
@@ -20,8 +20,8 @@ interface RetrofitInterface {
     suspend fun getVideo(
         @Header("Authorization") apiKey: String,
         @Query("query") query: String,
-        @Query("sort") sort: String,
-        @Query("page") page: Int,
+        @Query("sort") sort: String = "recency",
+        @Query("page") page: Int = 1,
         @Query("size") size: Int
     ): VideoData
 }

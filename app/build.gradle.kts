@@ -1,8 +1,15 @@
+import java.io.FileInputStream
+import java.util.Properties
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
     id("kotlin-parcelize")
 }
+
+val localPropertiesFile = rootProject.file("local.properties")
+val properties = Properties()
+properties.load(FileInputStream(localPropertiesFile))
 
 android {
     namespace = "com.example.imagesearchapp"
@@ -16,6 +23,8 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+        buildConfigField("String", "KAKAO_API_KEY", "\"${properties["kakaoApiKey"]}\"")
     }
 
     buildTypes {

@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.view.menu.MenuBuilder
+import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.imagesearchapp.databinding.ActivityMainBinding
@@ -28,7 +29,6 @@ class MainActivity : AppCompatActivity() {
         setViewPager()
     }
 
-    @SuppressLint("UseCompatLoadingForDrawables")
     private fun setViewPager() {
         val items = tabText()
 
@@ -37,8 +37,8 @@ class MainActivity : AppCompatActivity() {
             TabLayoutMediator(tabLayout, viewPager) { tab, position ->
                 tab.text = items[position]
                 tab.icon = when (position) {
-                    0 -> getDrawable(R.drawable.home)
-                    else -> getDrawable(R.drawable.choice_icon)
+                    0 -> ContextCompat.getDrawable(this@MainActivity, R.drawable.home)
+                    else -> ContextCompat.getDrawable(this@MainActivity, R.drawable.choice_icon)
                 }
             }.attach()
         }
